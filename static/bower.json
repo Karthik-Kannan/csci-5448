@@ -1,0 +1,20 @@
+{
+  "name": "Testr",
+  "homepage": "https://github.com/Karthik-Kannan/csci-5448",
+  "authors": [
+    "Mahesh Kumar Ravindranathan",
+    "Karthik Kannan",
+    "Nikhil Mahendra"
+  ],
+  "description": "Smart way to take test",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
