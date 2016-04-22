@@ -2,3 +2,4 @@ Flask
 flask-bootstrap
 flask-triangle
 pymongo
+Flask-MongoAlchemy

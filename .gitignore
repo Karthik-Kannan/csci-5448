@@ -1,3 +1,5 @@
 .idea
 venv
 static/bower_components
+data
+log_mongo*
