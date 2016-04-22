@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Testr{% endblock %}
+{% block navbar %}
+    {{ super() }}
+    <!--<div class="container-fluid">-->
+        <!--<div class="row">-->
+        <!--<div class="col-sm-3 col-md-2 sidebar">-->
+          <!--<ul class="nav nav-sidebar">-->
+            <!--<li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>-->
+            <!--<li><a href="#">List Tests</a></li>-->
+            <!--<li><a href="#">Grades</a></li>-->
+            <!--<li><a href="#">Performance Analysis</a></li>-->
+          <!--</ul>-->
+        <!--</div>-->
+{% endblock %}
+{% block page_content %}
+    <div ng-app="testr" ng-controller="loginController">
+        <div class="content">
+            <form class="form-signin">
+                <h2 class="form-signin-heading text-center">Login</h2>
+                    <label for="inputEmail" class="sr-only">Email address</label>
+                    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
+
+                    <label for="inputPassword" class="sr-only">Password</label>
+                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            </form>
+            <br>
+            <br>
+            <br>
+            <br>
+            <form class="form-register">
+                <h2 class="form-register-heading text-center">New User? Register Now</h2>
+                    <label for="inputEmail" class="sr-only">Email address</label>
+                    <input type="email" id="inputEmailRegister" class="form-control" placeholder="Email address" required="" autofocus="">
+
+                    <label for="inputPassword" class="sr-only">Password</label>
+                    <input type="password" id="inputPasswordRegister" class="form-control" placeholder="Password" required="">
+
+                    <label for="inputPassword" class="sr-only">Re-enter Password</label>
+                    <input type="password" id="input1PasswordRegister" class="form-control" placeholder="Password" required="">
+
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            </form>
+
+        </div>
+    </div>
+ </div>
+<!--</div>-->
+{% endblock %}
+{% block scripts %}
+    {{ super() }}
+    <script src="/static/angular/studentController.js"></script>
+{% endblock %}
