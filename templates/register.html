@@ -16,35 +16,35 @@
 {% block page_content %}
     <div ng-app="testr" ng-controller="loginController">
         <div class="content">
-            <!--<form class="form-signin">-->
-                <!--<h2 class="form-signin-heading text-center">Login</h2>-->
-                    <!--<label for="inputEmail" class="sr-only">Email address</label>-->
-                    <!--<input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">-->
-
-                    <!--<label for="inputPassword" class="sr-only">Password</label>-->
-                    <!--<input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">-->
-
-                    <!--<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>-->
-            <!--</form>-->
             <form action="" method=post class="form-horizontal">
-                <h2>Login into Testr</h2>
+                    <h2>Register for Testr </h2>
                 <div class="control-group">
                     <div class="controls">
                       <input type="text" id="username" name="username" class="input-xlarge"
-                        placeholder="Enter Username" required>
+                        placeholder="Enter Username" value="{{ request.form.username }}"
+                        required>
                     </div>
                 </div>
 
                 <div class="control-group">
                     <div class="controls">
                       <input type="password" id="password" name="password" class="input-xlarge"
-                        placeholder="Enter Password" required>
+                        placeholder="Enter Password" value="{{ request.form.password }}"
+                        required>
                     </div>
                 </div>
 
                 <div class="control-group">
                     <div class="controls">
-                      <button type="submit" class="btn btn-success">Signin</button>
+                      <input type="email" id="email" name="email" class="input-xlarge"
+                        placeholder="Enter Email" value="{{ request.form.username }}"
+                        required>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <div class="controls">
+                      <button type="submit" class="btn btn-success">Signup</button>
                     </div>
                 </div>
             </form>

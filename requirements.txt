@@ -3,3 +3,6 @@ flask-bootstrap
 flask-triangle
 pymongo
 Flask-MongoAlchemy
+Flask-Login
+pytz
+pymysql
