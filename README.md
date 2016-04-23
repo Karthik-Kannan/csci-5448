@@ -1,16 +1,17 @@
 # csci-5448
 CSCI 5448 Final Project. Object Oriented Design and Analysis
 
-One time:
-`mkdir data`
-`mkdir venv`
-`cd venv`
+Get the virualenv setup:
 `pip install virtualenv`
-`cd ..`
+`virtualenv venv`
+
+Install the python requirements:
+`pip install -r requirements.txt`
 
 To active the virtual environment:
 `source venv/bin/activate`
 
 To start the MongoDB Database: 
+`mkdir data`
 `mongod --fork --logpath log_mongodb --dbpath data/`
 
