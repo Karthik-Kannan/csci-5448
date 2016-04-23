@@ -6,3 +6,4 @@ Flask-MongoAlchemy
 Flask-Login
 pytz
 pymysql
+flask-sqlalchemy
