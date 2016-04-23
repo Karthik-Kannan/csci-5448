@@ -6,33 +6,33 @@
 {% block page_content %}
     <div ng-app="testr" ng-controller="questionController">
         <div class="content">
-            <form>
+            <form class="well">
                 <div class="form-group">
                     <label for="Question">Question</label>
-                    <input type="text" class="form-control" id="Question" placeholder="Question to be entered here!" ng-model="Question">
+                    <input type="text" class="form-control" id="question" placeholder="Question to be entered here!" ng-model="Question">
                 </div>
                 <div class="form-group">
                     <label for="Category">Category</label>
-                    <input type="text" class="form-control" id="Category" placeholder="Enter categories separated by commas" ng-model="Category">
+                    <input type="text" class="form-control" id="category" placeholder="Enter categories separated by commas" ng-model="Category">
                 </div>
                 <div class="form-group">
                     <label for="MaxMarks">Max Marks</label>
-                    <input type="number" class="form-control" id="MaxMarks" ng-model="MaxMarks">
+                    <input type="number" class="form-control" id="maxMarks" ng-model="maxMarks">
                 </div>
                 <div class="form-group">
-                    <label for="AnswerType">Answer Type</label><br>
+                    <label for="answerType">Answer Type</label><br>
                     <div ng-init="answerType.selected=FALSE"></div>
-                    <div ng-repeat="option in userOptions">
-                        <div class="radio">
-                            <input type="radio" name="AnswerType" ng-model="answerType.selected" value="{{option.id|angular}}" id="{{option.id|angular}}">
-                            {{option.text|angular}}
-                        </div>
-                        {{userSelected.selected|angular}}
+                    <div class="radio-inline" ng-repeat="option in userOptions">
+                        <input type="radio" name="AnswerType" ng-model="answerType.selected" value="{{option.id|angular}}" id="{{option.id|angular}}">{{option.text|angular}}
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="referenceAnswer">Reference Answer</label>
                     <input type="text" class="form-control" id="referenceAnswer" placeholder="Enter the answer separated by comma" ng-model="referenceAnswer">
+                </div>
+                <div class="form-group">
+                    <label for="options">Options</label>
+                    <input type="text" class="form-control" id="options" placeholder="Enter the options separated by comma" ng-model="options">
                 </div>
                 <div class="form-group">
                     <button class="alert-info" ng-click="createQuestion()">Submit</button>

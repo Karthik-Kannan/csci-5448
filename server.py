@@ -5,10 +5,19 @@ from flask.ext.mongoalchemy import MongoAlchemy
 from flask.ext.triangle import Triangle
 from flask.ext.login import LoginManager
 from flask.ext.sqlalchemy import SQLAlchemy
+from werkzeug.datastructures import ImmutableMultiDict
 
 import datetime , random
 from datetime import datetime
 
+
+
+import pymongo
+from pymongo import MongoClient
+client = MongoClient('localhost', 27017)
+
+dbMongo = client['testr']
+question = dbMongo['question']
 
 
 login_manager = LoginManager()
@@ -42,6 +51,25 @@ def welcome():
 def index():
     return render_template('index.html')
 
+@app.route('/setQuestion',methods=['GET', 'POST'])
+def setQuestion():
+    print "Hello"
+    question = dict(request.form)
+    # print request.form.getlist('question'), request.form.getlist('category'), request.form.getlist('maxMarks'),request.form.getlist('answerType'),request.form.getlist('referenceAnswer')
+
+    dbMongo.question.insert_one({'question': question['question'][0],
+                                 'category': question['category'][0],
+                                 'maxMarks': question['maxMarks'][0] ,
+                                 'answerType': question['answerType'][0] ,
+                                 'referenceAnswer': question['referenceAnswer'][0] ,
+                                 'options': question['options'][0]
+                                 } );
+    # dbMongo.question.insert({'test': 'test'})
+    return render_template('index.html')
+    #return 'Hello from Flask!'
+
+
+
 @app.route('/student',methods=['GET', 'POST'])
 @login_required
 def student():
@@ -53,6 +81,12 @@ def student():
 def question():
     return render_template('question.html')
 
+
+
+@app.route('/questions',methods=['GET', 'POST'])
+@login_required
+def questions():
+    return render_template('questions.html')
 
 class User(db.Model):
     __tablename__ = "users"

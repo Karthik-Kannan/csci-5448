@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Testr{% endblock %}
+{% block navbar %}
+    {{ super() }}
+{% endblock %}
+{% block page_content %}
+    <div ng-app="testr" ng-controller="questionController">
+        <div class="content">
+            <input type="text" ng-model="questionNumbers" ng-change="changeQuestionNumbers()" >
+            {{ questionNumbers | angular }}
+            <div ng-repeat="n in questionCountArray">
+                    <form class="well">
+                        <div class="form-group">
+                            <label for="Question_{{n.id|angular}}">Question {{n.id|angular}}</label>
+                            <input type="text" class="form-control" id="question" placeholder="Question to be entered here!" ng-model="n.question">
+                        </div>
+                        <div class="form-group">
+                            <label for="Category">Category</label>
+                            <input type="text" class="form-control" id="category" placeholder="Enter categories separated by commas" ng-model="n.category">
+                        </div>
+                        <div class="form-group">
+                            <label for="MaxMarks">Max Marks</label>
+                            <input type="number" class="form-control" id="maxMarks" ng-model="n.maxMarks">
+                        </div>
+                        <div class="form-group">
+                            <label for="answerType">Answer Type</label><br>
+                            <div ng-init="answerType.selected=FALSE"></div>
+                            <div class="radio-inline" ng-repeat="option in userOptions">
+                                <input type="radio" name="AnswerType" ng-model="n.answerType" value="{{option.id|angular}}" id="{{option.id|angular}}">{{option.text|angular}}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="referenceAnswer">Reference Answer</label>
+                            <input type="text" class="form-control" id="referenceAnswer" placeholder="Enter the answer separated by comma" ng-model="n.referenceAnswer">
+                        </div>
+                        <div class="form-group">
+                            <label for="options">Options</label>
+                            <input type="text" class="form-control" id="options" placeholder="Enter the options separated by comma" ng-model="n.options">
+                        </div>
+                    </form>
+                </div>
+                <div class="form-group">
+                    <button class="alert-info" ng-click="getContent()" >Submit</button>
+                </div>
+            <!--ng-click="createQuestion()"-->
+        </div>
+    </div>
+<!--</div>-->
+{% endblock %}
+{% block scripts %}
+    {{ super() }}
+    <script src="static/angular/questionsController.js"></script>
+{% endblock %}

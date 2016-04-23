@@ -10,11 +10,29 @@ testr.controller('questionController',['$scope','$http','$route', '$routeParams'
 {
 
 
-    $scope.$route = $route;
-    $scope.$location = $location;
-    $scope.$routeParams = $routeParams;
+    $scope.questionCountArray = 0
+    $scope.changeQuestionNumbers = function()
+    {
+        //console.log($scope.questionNumbers);
+        var questionCount = [];
 
-    console.log("Route: " ,$scope.$route , " ", "Location: ",$scope.$location, " " , "Route Params: ", $scope.$routeParams )
+        for (var i = 1; i <= $scope.questionNumbers; i++)
+        {
+            questionCount.push({id:i ,"question":"" , "category": "", "maxMarks": "" , "answerType": 0 , "referenceAnswer": "" , "options": ""});
+        }
+        //console.log(questionCount)
+        $scope.questionCountArray = questionCount;
+
+    }
+
+    $scope.getContent = function()
+    {
+        console.log($scope.questionCountArray)
+    }
+
+
+
+    //console.log("Route: " ,$scope.$route , " ", "Location: ",$scope.$location, " " , "Route Params: ", $scope.$routeParams )
     $scope.userOptions = [{text:'Single Choice', id:0}, {text:'Multi Choice', id:1}, {text:'Boolean',id:2},  {text:'Text', id:3},{text:'Code', id:3}];;
 
     $scope.changeView = function(view)
@@ -68,6 +86,11 @@ testr.controller('questionController',['$scope','$http','$route', '$routeParams'
     }
 }]);
 
+
+//testr.config(['$interpolateProvider', function($interpolateProvider) {
+//  $interpolateProvider.startSymbol('{a');
+//  $interpolateProvider.endSymbol('a}');
+//}]);
 //
 //testr.config(function($routeProvider){
 // $routeProvider.when('/index', {
