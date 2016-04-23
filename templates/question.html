@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Testr{% endblock %}
+{% block navbar %}
+    {{ super() }}
+{% endblock %}
+{% block page_content %}
+    <div ng-app="testr" ng-controller="questionController">
+        <div class="content">
+            <form>
+                <div class="form-group">
+                    <label for="Question">Question</label>
+                    <input type="text" class="form-control" id="Question" placeholder="Question to be entered here!" ng-model="Question">
+                </div>
+                <div class="form-group">
+                    <label for="Category">Category</label>
+                    <input type="text" class="form-control" id="Category" placeholder="Enter categories separated by commas" ng-model="Category">
+                </div>
+                <div class="form-group">
+                    <label for="MaxMarks">Max Marks</label>
+                    <input type="number" class="form-control" id="MaxMarks" ng-model="MaxMarks">
+                </div>
+                <div class="form-group">
+                    <label for="AnswerType">Answer Type</label><br>
+                    <div ng-init="answerType.selected=FALSE"></div>
+                    <div ng-repeat="option in userOptions">
+                        <div class="radio">
+                            <input type="radio" name="AnswerType" ng-model="answerType.selected" value="{{option.id|angular}}" id="{{option.id|angular}}">
+                            {{option.text|angular}}
+                        </div>
+                        {{userSelected.selected|angular}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="referenceAnswer">Reference Answer</label>
+                    <input type="text" class="form-control" id="referenceAnswer" placeholder="Enter the answer separated by comma" ng-model="referenceAnswer">
+                </div>
+                <div class="form-group">
+                    <button class="alert-info" ng-click="createQuestion()">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+<!--</div>-->
+{% endblock %}
+{% block scripts %}
+    {{ super() }}
+    <script src="static/angular/questionController.js"></script>
+{% endblock %}

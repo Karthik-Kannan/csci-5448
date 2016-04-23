@@ -48,6 +48,11 @@ def student():
     return render_template('student.html')
 
 
+@app.route('/question',methods=['GET', 'POST'])
+@login_required
+def question():
+    return render_template('question.html')
+
 
 class User(db.Model):
     __tablename__ = "users"
