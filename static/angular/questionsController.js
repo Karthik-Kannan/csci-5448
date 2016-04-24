@@ -28,6 +28,30 @@ testr.controller('questionController',['$scope','$http','$route', '$routeParams'
     $scope.getContent = function()
     {
         console.log($scope.questionCountArray)
+        var data = $.param({ questions: $scope.questionCountArray})
+        var config =
+        {
+            headers :
+            {
+                'Content-Type': 'application/json'
+            }
+        }
+        $http.post('setQuestions', $scope.questionCountArray, config)
+            .success(function (data, status, headers, config) {
+                $scope.PostDataResponse = data;
+                console.log("test");
+                //$scope.changeView('index')
+                window.location.href = 'index';
+                //$location.path('/index');
+
+            })
+            .error(function (data, status, header, config) {
+                $scope.ResponseDetails = "Data: " + data +
+                    "<hr />status: " + status +
+                    "<hr />headers: " + header +
+                    "<hr />config: " + config;
+            });
+
     }
 
 
