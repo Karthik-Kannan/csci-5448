@@ -21,40 +21,46 @@ testr.controller('testController',['$scope','$http','$route', '$routeParams','$l
     {
         $location.path(view); // path not hash
     }
-
-    $scope.createQuestion = function()
+    
+    $scope.handleCheckEvent = function() {
+        //console.log("click");
+        var selectedCheckboxes = $("input[type=checkbox]:checked").parent().parent().find("p");
+        $scope.ids = [];
+        selectedCheckboxes.map(function(){
+            $scope.ids.push($(this).html());
+        });
+        //console.log($scope.ids);
+    };
+    
+     $scope.getContent = function()
     {
-        console.log("Question:" + $scope.question);
-        console.log("Category:" + $scope.category);
-        console.log("Max Marks:" + $scope.maxMarks);
-        console.log("Answer Type:" + $scope.answerType.selected);
-        console.log("Reference Answer:" + $scope.referenceAnswer);
-
-
-        var data = $.param({
-                question: $scope.Question,
-                category: $scope.Category,
-                maxMarks: $scope.maxMarks,
-                answerType: $scope.answerType.selected,
-                referenceAnswer: $scope.referenceAnswer,
-                options: $scope.options
-            });
-
-        console.log(data)
+        data = 
+        {
+            testName: $scope.testName,
+            questions: $scope.ids,
+            startTime: $scope.startTime,
+            durationOfTest: $scope.dOfTest,
+            expiryDate: $scope.expTime,
+            category: $scope.category,
+            course: $scope.course
+        }
+        
         var config =
         {
             headers :
             {
-                'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+                'Content-Type': 'application/json'
             }
         }
-
-        $http.post('setQuestion', data, config)
+        
+        console.log(data)
+        
+        $http.post('setTest', data, config)
             .success(function (data, status, headers, config) {
                 $scope.PostDataResponse = data;
                 console.log("test");
                 //$scope.changeView('index')
-                window.location.href = 'index';
+                //window.location.href = 'index';
                 //$location.path('/index');
 
             })
@@ -64,19 +70,9 @@ testr.controller('testController',['$scope','$http','$route', '$routeParams','$l
                     "<hr />headers: " + header +
                     "<hr />config: " + config;
             });
+        
 
     }
+    
 }]);
 
-//
-//testr.config(function($routeProvider){
-// $routeProvider.when('/index', {
-//        controller: indexController,
-//        templateUrl: 'index'
-//    })
-//});
-//
-//function indexController()
-//{
-//
-//}

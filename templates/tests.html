@@ -17,25 +17,47 @@
                 </div>
                 <div class="form-group">
                     <label for="dOfTest">Duration of Test</label>
-                    <input type="number" max="60" min="20" class="form-control" id="dOfTest" ng-model="dOfTest">
+                    <input type="number" max=60 min=20 class="form-control" id="dOfTest" ng-model="dOfTest">
                 </div>
                 <div class="form-group">
-                    <label for="answerType">Answer Type</label><br>
-                    <div ng-init="answerType.selected=FALSE"></div>
-                    <div class="radio-inline" ng-repeat="option in userOptions">
-                        <input type="radio" name="AnswerType" ng-model="answerType.selected" value="{{option.id|angular}}" id="{{option.id|angular}}">{{option.text|angular}}
-                    </div>
+                    <label for="expiryDate">Expiry Date</label><br>
+                    <input type="datetime-local" class="form-control" id="expTime"  ng-model="expTime">
                 </div>
                 <div class="form-group">
-                    <label for="referenceAnswer">Reference Answer</label>
-                    <input type="text" class="form-control" id="referenceAnswer" placeholder="Enter the answer separated by comma" ng-model="referenceAnswer">
+                    <label for="category">Category</label>
+                    <input type="text" class="form-control" id="category" ng-model="category">
                 </div>
                 <div class="form-group">
-                    <label for="options">Options</label>
-                    <input type="text" class="form-control" id="options" placeholder="Enter the options separated by comma" ng-model="options">
+                    <label for="course">Course</label>
+                    <input type="text" class="form-control" id="course" ng-model="course">
                 </div>
                 <div class="form-group">
-                    <button class="alert-info" ng-click="createQuestion()">Submit</button>
+                    <label for="questions">Questions</label>
+                    <!--<div> {{ q_list }} </div> -->
+                    <table class="table table-condensed" id="tableID1">
+                       <thead>
+                         <tr>
+                           <th>ID</th>
+                           <th>Question</th>
+                         </tr>
+                       </thead>
+                         <tbody>
+
+                    {% for x in q_list %}
+                            <tr>
+                                <td><input type="checkbox" ng-click="handleCheckEvent()"></td>
+                                <td>{{x.question}}</td>
+                                <td><p style="display: none;">{{x._id}}</p></td>
+                            </tr>
+                      {% endfor %}
+                      </tbody>
+                      
+                    </table>
+                </div>
+                
+                <div class="form-group">
+                    <!--<button onclick="location.href='login'">Login</button>-->
+                    <button class="alert-info" ng-click="getContent()">Submit</button>
                 </div>
             </form>
         </div>
@@ -44,5 +66,5 @@
 {% endblock %}
 {% block scripts %}
     {{ super() }}
-    <script src="static/angular/questionController.js"></script>
+    <script src="static/angular/testController.js"></script>
 {% endblock %}

@@ -6,6 +6,7 @@ from flask.ext.triangle import Triangle
 from flask.ext.login import LoginManager
 from flask.ext.sqlalchemy import SQLAlchemy
 from werkzeug.datastructures import ImmutableMultiDict
+from bson.objectid import ObjectId 
 import json
 
 import datetime , random
@@ -19,7 +20,7 @@ client = MongoClient('localhost', 27017)
 
 dbMongo = client['testr']
 question = dbMongo['question']
-
+test = dbMongo['test']
 
 login_manager = LoginManager()
 
@@ -86,9 +87,35 @@ def setQuestions():
                                  } );
 
 
+@app.route('/takeTest/', defaults={'testId': None })
+@app.route('/takeTest/<testId>')
+def takeTest(testId):
+    testData = list(dbMongo.test.find({'_id': ObjectId(testId)}))
+    return render_template('takeTest.html',testData = testData)
+    
+
+
+@app.route('/setTest',methods=['GET', 'POST'])
+def setTest():
+    testInfo = json.loads(request.data.decode())
+    dbMongo.test.insert_one(testInfo)
+    print testInfo
+    
+
+    dbMongo.question.insert_one({'question': question['question'],
+                                 'category': question['category'],
+                                 'maxMarks': question['maxMarks'] ,
+                                 'answerType': question['answerType'],
+                                 'referenceAnswer': question['referenceAnswer'],
+                                 'options': question['options']
+                                 } );
+          
+                                 
 @app.route('/createTests',methods=['GET', 'POST'])
 def createTests():
-    return render_template('tests.html')
+    questions_list = list(dbMongo.question.find())
+    print "ghost ", questions_list
+    return render_template('tests.html', q_list = questions_list)
 
 
 @app.route('/student',methods=['GET', 'POST'])
