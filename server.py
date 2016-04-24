@@ -6,6 +6,7 @@ from flask.ext.triangle import Triangle
 from flask.ext.login import LoginManager
 from flask.ext.sqlalchemy import SQLAlchemy
 from werkzeug.datastructures import ImmutableMultiDict
+import json
 
 import datetime , random
 from datetime import datetime
@@ -73,8 +74,7 @@ def setQuestion():
 def setQuestions():
     print "Hello"
     # questions = dict(request.form)
-    questions = request.data.split(',')
-    #print questions
+    questions = json.loads(request.data.decode())
     for question in questions:
         print question
         dbMongo.question.insert_one({'question': question['question'],
