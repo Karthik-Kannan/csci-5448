@@ -84,23 +84,11 @@ def setQuestions():
                                  'referenceAnswer': question['referenceAnswer'],
                                  'options': question['options']
                                  } );
-    # for (var i = 0; i < questions.length; i++)
-    # {
-    #     alert(result.d[i].employeename);
-    # }
-    #
-    # print request.form.getlist('question'), request.form.getlist('category'), request.form.getlist('maxMarks'),request.form.getlist('answerType'),request.form.getlist('referenceAnswer')
 
-    # dbMongo.question.insert_one({'question': question['question'][0],
-    #                              'category': question['category'][0],
-    #                              'maxMarks': question['maxMarks'][0] ,
-    #                              'answerType': question['answerType'][0] ,
-    #                              'referenceAnswer': question['referenceAnswer'][0] ,
-    #                              'options': question['options'][0]
-    #                              } );
-    # dbMongo.question.insert({'test': 'test'})
-    # return render_template('index.html')
-    #return 'Hello from Flask!'
+
+@app.route('/createTests',methods=['GET', 'POST'])
+def createTests():
+    return render_template('tests.html')
 
 
 @app.route('/student',methods=['GET', 'POST'])
