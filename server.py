@@ -69,6 +69,39 @@ def setQuestion():
     #return 'Hello from Flask!'
 
 
+@app.route('/setQuestions',methods=['GET', 'POST'])
+def setQuestions():
+    print "Hello"
+    # questions = dict(request.form)
+    questions = request.data.split(',')
+    #print questions
+    for question in questions:
+        print question
+        dbMongo.question.insert_one({'question': question['question'],
+                                 'category': question['category'],
+                                 'maxMarks': question['maxMarks'] ,
+                                 'answerType': question['answerType'],
+                                 'referenceAnswer': question['referenceAnswer'],
+                                 'options': question['options']
+                                 } );
+    # for (var i = 0; i < questions.length; i++)
+    # {
+    #     alert(result.d[i].employeename);
+    # }
+    #
+    # print request.form.getlist('question'), request.form.getlist('category'), request.form.getlist('maxMarks'),request.form.getlist('answerType'),request.form.getlist('referenceAnswer')
+
+    # dbMongo.question.insert_one({'question': question['question'][0],
+    #                              'category': question['category'][0],
+    #                              'maxMarks': question['maxMarks'][0] ,
+    #                              'answerType': question['answerType'][0] ,
+    #                              'referenceAnswer': question['referenceAnswer'][0] ,
+    #                              'options': question['options'][0]
+    #                              } );
+    # dbMongo.question.insert({'test': 'test'})
+    # return render_template('index.html')
+    #return 'Hello from Flask!'
+
 
 @app.route('/student',methods=['GET', 'POST'])
 @login_required
