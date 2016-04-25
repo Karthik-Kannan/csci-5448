@@ -57,7 +57,7 @@ testr.controller('takeTestController',['$scope','$http',function ($scope,$http)
 
             //console.log(data)
             //
-            $http.post('setTest', data, config)
+            $http.post('/setAnswers', data, config)
                 .success(function (data, status, headers, config) {
                     $scope.PostDataResponse = data;
                     console.log("test");

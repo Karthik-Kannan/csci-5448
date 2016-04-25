@@ -21,6 +21,7 @@ client = MongoClient('localhost', 27017)
 dbMongo = client['testr']
 question = dbMongo['question']
 test = dbMongo['test']
+answer = dbMongo['answer']
 
 login_manager = LoginManager()
 
@@ -71,25 +72,6 @@ def setQuestion():
     #return 'Hello from Flask!'
 
 
-
-
-@app.route('/setAnswers',methods=['GET', 'POST'])
-def setAnswers():
-    print "Hello"
-    # question = dict(request.form)
-    # # print request.form.getlist('question'), request.form.getlist('category'), request.form.getlist('maxMarks'),request.form.getlist('answerType'),request.form.getlist('referenceAnswer')
-    #
-    # dbMongo.question.insert_one({'question': question['question'][0],
-    #                              'category': question['category'][0],
-    #                              'maxMarks': question['maxMarks'][0] ,
-    #                              'answerType': question['answerType'][0] ,
-    #                              'referenceAnswer': question['referenceAnswer'][0] ,
-    #                              'options': question['options'][0]
-    #                              } );
-    # # dbMongo.question.insert({'test': 'test'})
-    # return render_template('index.html')
-
-
 @app.route('/setQuestions',methods=['GET', 'POST'])
 def setQuestions():
     print "Hello"
@@ -109,18 +91,10 @@ def setQuestions():
 
 @app.route('/setAnswers',methods=['GET', 'POST'])
 def setAnswers():
-    print "Hello"
-    # questions = dict(request.form)
     answers = json.loads(request.data.decode())
-    # for question in questions:
-    #     print question
-    #     dbMongo.question.insert_one({'question': question['question'],
-    #                              'category': question['category'],
-    #                              'maxMarks': question['maxMarks'] ,
-    #                              'answerType': question['answerType'],
-    #                              'referenceAnswer': question['referenceAnswer'],
-    #                              'options': question['options']
-    #                              } );
+    testName = answers['testName']
+    for question in answers['answers']:
+        dbMongo.answer.insert_one({'testName': testName , 'questionID': question , 'answer': answers['answers'][question]})
 
 
 
