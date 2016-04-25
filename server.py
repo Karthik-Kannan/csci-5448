@@ -215,22 +215,27 @@ def register():
     flash('User successfully registered')
     return redirect(url_for('login'))
 
-class ContactForm(Form):
-  name = TextField("Name")
-  email = TextField("Email")
-  subject = TextField("Subject")
-  message = TextAreaField("Message")
-  submit = SubmitField("Send")
+class Contact(Form):
+  firstname = TextField("First Name")
+  lastname = TextField("First Name")
+  university = TextField("University")
+  phone = TextField("Phone Number")
+  submit = SubmitField("Submit")
 
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
-  form = ContactForm()
+    #~ form = ContactForm()
+
+    #~ if request.method == 'POST':
+        #~ return 'Form posted.'
  
-  if request.method == 'POST':
-    return 'Form posted.'
- 
-  elif request.method == 'GET':
-    return render_template('contact.html', form=form)
+    if request.method == 'GET':
+        return render_template('contact.html')
+
+    contact = Contact(request.form['firstname'],
+                      request.form['lastname'],
+                      request.form['university']
+                      request.form['phone'])
 
 
 
