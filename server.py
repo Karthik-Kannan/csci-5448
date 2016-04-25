@@ -91,6 +91,12 @@ def setQuestions():
 @app.route('/takeTest/<testId>')
 def takeTest(testId):
     testData = list(dbMongo.test.find({'_id': ObjectId(testId)}))
+    for questionId in testData[0]['questions']:
+        print questionId
+        questionActual = list(dbMongo.question.find({'_id': ObjectId(questionId)}))
+        testData.append(questionActual)
+
+    print testData
     return render_template('takeTest.html',testData = testData)
     
 

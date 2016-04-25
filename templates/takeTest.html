@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}Testr{% endblock %}
+{% block navbar %}
+    {{ super() }}
+{% endblock %}
+{% block page_content %}
+    <div ng-app="testr" ng-controller="takeTestController">
+        <div class="content">
+            <label for="testName">Test Name: {{testData[0].testName}}</label><br>
+            <label for="startTime">Start Time: {{testData[0].startTime}}</label><br>
+            <label for="category">Category: {{testData[0].category}}</label><br>
+            <label for="course">Category: {{testData[0].course}}</label><br>
+            <label for="expiryDate">Expiry Date: {{testData[0].expiryDate}}</label><br>
+            <!--<label > {{testData}} </label>-->
+            <!--{{testData}}-->
+            <form class="well">
+             {% for x in testData %}
+                <!--<b>{{ loop.index }}:</b> {{ x }}  -->
+                {% if not loop.first %}
+                    {% set outerLoop = loop %}
+                    <label for="question">Question: {{ loop.index - 1 }} >> {{x[0]['question']}}</label> <label class="pull-right" > Marks : {{x[0]['maxMarks']}}</label>  <br>
+                    {% if x[0]['answerType'] == 0  %}
+                        <div id="question_{{loop.index - 1}}">
+                            {% for answer in x[0].options.split(',') %}
+                            <div>
+                                <input type="radio" name="radio_{{outerLoop}}" ng-click="handleCheckEvent('question_'+{{outerLoop.index - 1}})" > <span>{{ answer }}</span> <br>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    {% if x[0]['answerType'] == '1'  %}
+                        <div id="question_{{loop.index - 1}}">
+                            {% for answer in x[0].options.split(',') %}
+                            <div>
+                                <input type="checkbox" ng-click="handleCheckEvent('question_'+{{outerLoop.index - 1}})" > <span>{{ answer }}</span> <br>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    {% if x[0]['answerType'] == '2'  %}
+                        <div id="question_{{loop.index - 1}}">
+                            <input type="radio" name="radio_{{outerLoop}}" ng-click="handleCheckEvent('question_'+{{outerLoop.index - 1}})" > <span>True</span> <br>
+                            <input type="radio" name="radio_{{outerLoop}}" ng-click="handleCheckEvent('question_'+{{outerLoop.index - 1}})" > <span>False</span> <br>
+                        </div>
+                    {% endif %}
+                    {% if x[0]['answerType'] == '3'  %}
+                        <div id="question_{{loop.index - 1}}">
+                            <input type="text"  ng-click="handleCheckEvent('question_'+{{outerLoop.index - 1}})" > <span> </span> </input> <br>
+                        </div>
+                    {% endif %}
+                {% endif %}
+             {% endfor %}
+            </form>
+
+                
+                <div class="form-group">
+                    <!--<button onclick="location.href='login'">Login</button>-->
+                    <button class="alert-info" ng-click="getContent()">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+<!--</div>-->
+{% endblock %}
+{% block scripts %}
+    {{ super() }}
+
+    <script src="/static/angular/takeTestController.js"></script>
+{% endblock %}
