@@ -4,6 +4,7 @@ flask-triangle
 pymongo
 Flask-MongoAlchemy
 Flask-Login
+Flask-WTF
 pytz
 pymysql
 flask-sqlalchemy
