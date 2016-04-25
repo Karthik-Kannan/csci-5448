@@ -1,7 +1,7 @@
 from flask import Flask, render_template , jsonify ,request, flash, redirect, url_for
 from flask.ext.login import login_user , logout_user , current_user , login_required
-from flask.ext.wtf import Form
-from wtforms import TextField, TextAreaField, SubmitField
+# from flask.ext.wtf import Form
+# from wtforms import TextField, TextAreaField, SubmitField
 from flask.ext.bootstrap import Bootstrap
 from flask.ext.mongoalchemy import MongoAlchemy
 from flask.ext.triangle import Triangle
@@ -199,6 +199,12 @@ def questions():
     return render_template('questions.html')
 
 
+@app.route('/viewGrades',methods=['GET', 'POST'])
+@login_required
+def viewGrades():
+    return render_template('viewgrade.html')
+
+
 
 @app.route('/register' , methods=['GET','POST'])
 def register():
@@ -215,12 +221,12 @@ def register():
     flash('User successfully registered')
     return redirect(url_for('login'))
 
-class Contact(Form):
-  firstname = TextField("First Name")
-  lastname = TextField("First Name")
-  university = TextField("University")
-  phone = TextField("Phone Number")
-  submit = SubmitField("Submit")
+# class Contact(Form):
+#   firstname = TextField("First Name")
+#   lastname = TextField("First Name")
+#   university = TextField("University")
+#   phone = TextField("Phone Number")
+#   submit = SubmitField("Submit")
 
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
@@ -232,10 +238,10 @@ def contact():
     if request.method == 'GET':
         return render_template('contact.html')
 
-    contact = Contact(request.form['firstname'],
-                      request.form['lastname'],
-                      request.form['university'],
-                      request.form['phone'])
+    # contact = Contact(request.form['firstname'],
+    #                   request.form['lastname'],
+    #                   request.form['university'],
+    #                   request.form['phone'])
 
 
 

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}Testr{% endblock %}
+{% block navbar %}
+    {{ super() }}
+{% endblock %}
+{% block page_content %}
+
+
+        <div class="content">
+            <table class="table table-condensed" id="tableID">
+                       <thead>
+                         <tr>
+                                <th>Course</th>
+                                <th>Category</th>
+                                <th>Test Name</th>
+                                <th>Grade</th>
+                         </tr>
+                       </thead>
+                         <tbody>
+                            <tr>
+                                <td>Big Data</td>
+                                <td>Hadoop</td>
+                                <td>Apache Spark</td>
+                                <td>A</td>
+                            </tr>
+                            <tr>
+                                <td>Algorithms</td>
+                                <td>Randomized Algorithm</td>
+                                <td>Mid-Term</td>
+                                <td>B+</td>
+                            </tr>
+                            <tr>
+                                <td>Independent Study</td>
+                                <td>Robotics</td>
+                                <td>Final Project</td>
+                                <td>A-</td>
+                            </tr>
+                            <tr>
+                                <td>OOAD</td>
+                                <td>Design Pattern, Object Oriented Program</td>
+                                <td>MVC Framework</td>
+                                <td>A</td>
+                            </tr>
+                      </tbody>
+
+
+        </div>
+
+{% endblock %}
+{% block scripts %}
+    {{ super() }}
+{% endblock %}
