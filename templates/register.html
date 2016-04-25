@@ -13,11 +13,12 @@
           <!--</ul>-->
         <!--</div>-->
 {% endblock %}
+
 {% block page_content %}
     <div ng-app="testr" ng-controller="loginController">
-        <div class="content">
+        <div class="content" align="center" >
             <form action="" method=post class="form-horizontal">
-                    <h2>Register for Testr </h2>
+                    <h2>Register for Testr </h2> <br>
                 <div class="control-group">
                     <div class="controls">
                       <input type="text" id="username" name="username" class="input-xlarge"
@@ -25,7 +26,7 @@
                         required>
                     </div>
                 </div>
-
+                <br>
                 <div class="control-group">
                     <div class="controls">
                       <input type="password" id="password" name="password" class="input-xlarge"
@@ -33,7 +34,7 @@
                         required>
                     </div>
                 </div>
-
+                <br>
                 <div class="control-group">
                     <div class="controls">
                       <input type="email" id="email" name="email" class="input-xlarge"
@@ -41,7 +42,7 @@
                         required>
                     </div>
                 </div>
-
+                <br>
                 <div class="control-group">
                     <div class="controls">
                       <button type="submit" class="btn btn-success">Signup</button>

@@ -71,6 +71,25 @@ def setQuestion():
     #return 'Hello from Flask!'
 
 
+
+
+@app.route('/setAnswers',methods=['GET', 'POST'])
+def setAnswers():
+    print "Hello"
+    # question = dict(request.form)
+    # # print request.form.getlist('question'), request.form.getlist('category'), request.form.getlist('maxMarks'),request.form.getlist('answerType'),request.form.getlist('referenceAnswer')
+    #
+    # dbMongo.question.insert_one({'question': question['question'][0],
+    #                              'category': question['category'][0],
+    #                              'maxMarks': question['maxMarks'][0] ,
+    #                              'answerType': question['answerType'][0] ,
+    #                              'referenceAnswer': question['referenceAnswer'][0] ,
+    #                              'options': question['options'][0]
+    #                              } );
+    # # dbMongo.question.insert({'test': 'test'})
+    # return render_template('index.html')
+
+
 @app.route('/setQuestions',methods=['GET', 'POST'])
 def setQuestions():
     print "Hello"
@@ -141,6 +160,12 @@ def createTests():
     print "ghost ", questions_list
     return render_template('tests.html', q_list = questions_list)
 
+@app.route('/listTests',methods=['GET', 'POST'])
+def listTests():
+    test_list = list(dbMongo.test.find())
+    return render_template('listTests.html', t_list = test_list)
+
+
 
 @app.route('/student',methods=['GET', 'POST'])
 @login_required
@@ -206,6 +231,10 @@ def register():
     return redirect(url_for('login'))
 
 
+
+
+
+
 @app.route('/login',methods=['GET','POST'])
 def login():
     if request.method == 'GET':
@@ -219,7 +248,7 @@ def login():
         return redirect(url_for('login'))
     login_user(registered_user)
     flash('Logged in successfully')
-    return redirect(request.args.get('index') or url_for('index'))
+    return redirect(request.args.get('student') or url_for('student'))
 
 
 if __name__ == '__main__':

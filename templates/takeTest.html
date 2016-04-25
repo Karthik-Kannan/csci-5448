@@ -4,7 +4,10 @@
     {{ super() }}
 {% endblock %}
 {% block page_content %}
-    <div ng-app="testr" ng-controller="takeTestController">
+    <div ng-app="testr" ng-init="getOverallData('{{testData[0].testName}}')"  ng-controller="takeTestController">
+        <!--<script type="text/javascript">-->
+            <!--{{ takeTestContent | angular }} = {{testData}}-->
+        <!--</script>-->
         <div class="content">
             <label for="testName">Test Name: {{testData[0].testName}}</label><br>
             <label for="startTime">Start Time: {{testData[0].startTime}}</label><br>

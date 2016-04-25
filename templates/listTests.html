@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Testr{% endblock %}
+{% block navbar %}
+    {{ super() }}
+{% endblock %}
+{% block page_content %}
+    <div ng-app="testr"  ng-controller="takeTestController">
+
+        <div class="content">
+            <table class="table table-condensed" id="tableID1">
+                       <thead>
+                         <tr>
+                                <th>Course</th>
+                                <th>Category</th>
+                                <th>Test Name</th>
+                                <th>Start Time</th>
+                                <th>Duration of Test</th>
+                         </tr>
+                       </thead>
+                         <tbody>
+
+                    {% for x in t_list %}
+                            <tr>
+                                <td>{{x.course}}</td>
+                                <td>{{x.category}}</td>
+                                <td><a href="takeTest/{{x._id}}">{{x.testName}}</a></td>
+                                <td>{{x.startTime}}</td>
+                                <td>{{x.durationOfTest}}</td>
+                            </tr>
+                      {% endfor %}
+                      </tbody>
+
+
+        </div>
+    </div>
+
+{% endblock %}
+{% block scripts %}
+    {{ super() }}
+
+    <script src="/static/angular/takeTestController.js"></script>
+{% endblock %}

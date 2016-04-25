@@ -3,14 +3,21 @@
 {% block navbar %}
     {{ super() }}
 {% endblock %}
+{% block body_attribs %}
+    background="/static/images/background.jpg"
+{% endblock %}
 {% block page_content %}
-    <div ng-app="testr" ng-controller="welcomeController">
-        <div class="content">
-                <h1 class="text-center"> Welcome to Testr </h1>
-                <h2 class="text-center"> The smart way to take Tests </h2>
-                <button onclick="location.href='register'">Register</button>
-                <button onclick="location.href='login'">Login</button>
-        </div>
+    <div ng-app="testr" ng-controller="welcomeController" >
+            <!--<img ="static/images/background.jpg" class="img-responsive" alt="Responsive image">-->
+            <div class="content">
+                    <h1 class="text-center"> Welcome to Testr </h1>
+                    <h2 class="text-center"> The smart way to take Tests </h2>
+                <center>
+                    <br> <br> <br>
+                    <button onclick="location.href='register'">Register</button> <br> <br> <br>
+                    <button onclick="location.href='login'">Login</button>
+                </center>
+            </div>
     </div>
 {% endblock %}
 {% block scripts %}

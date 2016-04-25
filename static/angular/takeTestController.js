@@ -6,6 +6,12 @@ testr.controller('takeTestController',['$scope','$http',function ($scope,$http)
 
         $scope.answers = {};
 
+        $scope.overallContent = ""
+        $scope.getOverallData = function(content)
+        {
+            console.log(content)
+            $scope.overallContent = content;
+        }
 
         $scope.handleCheckEvent = function(parentDiv,type) {
             //console.log("click");
@@ -36,49 +42,36 @@ testr.controller('takeTestController',['$scope','$http',function ($scope,$http)
 
         $scope.getContent = function()
         {
-            console.log($scope.answers)
+            answers = $scope.answers
+            test = $scope.overallContent
+            data = { 'testName': test, 'answers': answers }
+            console.log(data)
 
-            data =
+            var config =
             {
-
+                headers :
+                {
+                    'Content-Type': 'application/json'
+                }
             }
 
-            //data =
-            //{
-            //    testName: $scope.testName,
-            //    questions: $scope.ids,
-            //    startTime: $scope.startTime,
-            //    durationOfTest: $scope.dOfTest,
-            //    expiryDate: $scope.expTime,
-            //    category: $scope.category,
-            //    course: $scope.course
-            //}
-            //
-            //var config =
-            //{
-            //    headers :
-            //    {
-            //        'Content-Type': 'application/json'
-            //    }
-            //}
-            //
             //console.log(data)
             //
-            //$http.post('setTest', data, config)
-            //    .success(function (data, status, headers, config) {
-            //        $scope.PostDataResponse = data;
-            //        console.log("test");
-            //        //$scope.changeView('index')
-            //        //window.location.href = 'index';
-            //        //$location.path('/index');
-            //
-            //    })
-            //    .error(function (data, status, header, config) {
-            //        $scope.ResponseDetails = "Data: " + data +
-            //            "<hr />status: " + status +
-            //            "<hr />headers: " + header +
-            //            "<hr />config: " + config;
-            //    });
+            $http.post('setTest', data, config)
+                .success(function (data, status, headers, config) {
+                    $scope.PostDataResponse = data;
+                    console.log("test");
+                    //$scope.changeView('index')
+                    //window.location.href = 'index';
+                    //$location.path('/index');
+
+                })
+                .error(function (data, status, header, config) {
+                    $scope.ResponseDetails = "Data: " + data +
+                        "<hr />status: " + status +
+                        "<hr />headers: " + header +
+                        "<hr />config: " + config;
+                });
 
 
         }
