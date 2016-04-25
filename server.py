@@ -87,6 +87,24 @@ def setQuestions():
                                  } );
 
 
+
+@app.route('/setAnswers',methods=['GET', 'POST'])
+def setAnswers():
+    print "Hello"
+    # questions = dict(request.form)
+    answers = json.loads(request.data.decode())
+    # for question in questions:
+    #     print question
+    #     dbMongo.question.insert_one({'question': question['question'],
+    #                              'category': question['category'],
+    #                              'maxMarks': question['maxMarks'] ,
+    #                              'answerType': question['answerType'],
+    #                              'referenceAnswer': question['referenceAnswer'],
+    #                              'options': question['options']
+    #                              } );
+
+
+
 @app.route('/takeTest/', defaults={'testId': None })
 @app.route('/takeTest/<testId>')
 def takeTest(testId):

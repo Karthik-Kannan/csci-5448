@@ -6,20 +6,42 @@ testr.controller('takeTestController',['$scope','$http',function ($scope,$http)
 
         $scope.answers = {};
 
-        $scope.handleCheckEvent = function(parentDiv) {
-        //console.log("click");
-        var selectedCheckboxes = $('#' + parentDiv).find("input[type=checkbox]:checked").siblings("span");
-        console.log(selectedCheckboxes);
-            $scope.answers[parentDiv] = [];
-        selectedCheckboxes.map(function(){
-            $scope.answers[parentDiv].push($(this).html());
-        });
 
+        $scope.handleCheckEvent = function(parentDiv,type) {
+            //console.log("click");
+            console.log(type)
+            if (type == 1) {
+                var selectedCheckboxes = $('#' + parentDiv).find("input[type=checkbox]:checked").siblings("span");
+                console.log(selectedCheckboxes);
+                $scope.answers[parentDiv] = [];
+                selectedCheckboxes.map(function () {
+                    $scope.answers[parentDiv].push($(this).html());
+                });
+
+
+            }
+            else if (type == 0 || type == 2 ) {
+                var selectedCheckboxes = $('#' + parentDiv).find("input[type=radio]:checked").siblings("span");
+                console.log(selectedCheckboxes);
+                $scope.answers[parentDiv] = [];
+                selectedCheckboxes.map(function () {
+                    $scope.answers[parentDiv].push($(this).html());
+                });
+
+            }
+            else if (type == 3 ) {
+                $scope.answers[parentDiv] = $('#' + parentDiv).find("input[type=text]").val()
+            };
         };
 
         $scope.getContent = function()
         {
             console.log($scope.answers)
+
+            data =
+            {
+
+            }
 
             //data =
             //{

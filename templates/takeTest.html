@@ -20,34 +20,39 @@
                     {% set outerLoop = loop %}
                     <label for="question">Question: {{ loop.index - 1 }} >> {{x[0]['question']}}</label> <label class="pull-right" > Marks : {{x[0]['maxMarks']}}</label>  <br>
                     {% if x[0]['answerType'] == 0  %}
-                        <div id="question_{{loop.index - 1}}">
+                        <div id="{{x[0]._id}}">
                             {% for answer in x[0].options.split(',') %}
                             <div>
-                                <input type="radio" name="radio_{{outerLoop}}" ng-click="handleCheckEvent('question_'+{{outerLoop.index - 1}})" > <span>{{ answer }}</span> <br>
+                                <input type="radio" name="radio_{{outerLoop}}" ng-click="handleCheckEvent('{{x[0]._id}}',{{x[0]['answerType']}})" > <span>{{ answer }}</span> <br>
                             </div>
                             {% endfor %}
                         </div>
                     {% endif %}
                     {% if x[0]['answerType'] == '1'  %}
-                        <div id="question_{{loop.index - 1}}">
+                        <div id="{{x[0]._id}}">
                             {% for answer in x[0].options.split(',') %}
                             <div>
-                                <input type="checkbox" ng-click="handleCheckEvent('question_'+{{outerLoop.index - 1}})" > <span>{{ answer }}</span> <br>
+                                <input type="checkbox" ng-click="handleCheckEvent('{{x[0]._id}}',{{x[0]['answerType']}})" > <span>{{ answer }}</span><br>
                             </div>
                             {% endfor %}
                         </div>
                     {% endif %}
                     {% if x[0]['answerType'] == '2'  %}
-                        <div id="question_{{loop.index - 1}}">
-                            <input type="radio" name="radio_{{outerLoop}}" ng-click="handleCheckEvent('question_'+{{outerLoop.index - 1}})" > <span>True</span> <br>
-                            <input type="radio" name="radio_{{outerLoop}}" ng-click="handleCheckEvent('question_'+{{outerLoop.index - 1}})" > <span>False</span> <br>
+                        <div id="{{x[0]._id}}">
+                            <div>
+                                <input type="radio" name="radio_{{outerLoop}}" ng-click="handleCheckEvent('{{x[0]._id}}',{{x[0]['answerType']}})" > <span>True</span> <br>
+                            </div>
+                            <div>
+                                <input type="radio" name="radio_{{outerLoop}}" ng-click="handleCheckEvent('{{x[0]._id}}',{{x[0]['answerType']}})" > <span>False</span> <br>
+                            </div>
                         </div>
                     {% endif %}
                     {% if x[0]['answerType'] == '3'  %}
-                        <div id="question_{{loop.index - 1}}">
-                            <input type="text"  ng-click="handleCheckEvent('question_'+{{outerLoop.index - 1}})" > <span> </span> </input> <br>
+                        <div id="{{x[0]._id}}">
+                            <input type="text"  ng-change="handleCheckEvent('{{x[0]._id}}',{{x[0]['answerType']}})" ng-model='text_{{x[0]._id}}' >   <br>
                         </div>
                     {% endif %}
+
                 {% endif %}
              {% endfor %}
             </form>
