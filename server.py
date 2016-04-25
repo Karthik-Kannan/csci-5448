@@ -234,7 +234,7 @@ def contact():
 
     contact = Contact(request.form['firstname'],
                       request.form['lastname'],
-                      request.form['university']
+                      request.form['university'],
                       request.form['phone'])
 
 
