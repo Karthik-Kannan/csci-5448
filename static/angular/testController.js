@@ -15,7 +15,7 @@ testr.controller('testController',['$scope','$http','$route', '$routeParams','$l
     $scope.$routeParams = $routeParams;
 
     console.log("Route: " ,$scope.$route , " ", "Location: ",$scope.$location, " " , "Route Params: ", $scope.$routeParams )
-    $scope.userOptions = [{text:'Single Choice', id:0}, {text:'Multi Choice', id:1}, {text:'Boolean',id:2},  {text:'Text', id:3},{text:'Code', id:3}];;
+    $scope.userOptions = [{text:'Single Choice', id:0}, {text:'Multi Choice', id:1}, {text:'Boolean',id:2},  {text:'Text', id:3},{text:'Code', id:4}];;
 
     $scope.changeView = function(view)
     {
