@@ -13,6 +13,10 @@
           <!--</ul>-->
         <!--</div>-->
 {% endblock %}
+{% block body_attribs %}
+    background="/static/images/background.jpg",
+    style="background-size: cover;"
+{% endblock %}
 {% block page_content %}
     <div ng-app="testr" ng-controller="loginController">
         <div class="content" align="center">

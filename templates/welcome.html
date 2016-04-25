@@ -4,18 +4,19 @@
     {{ super() }}
 {% endblock %}
 {% block body_attribs %}
-    background="/static/images/background.jpg"
+    background="/static/images/background.jpg",
+    style="background-size: cover;"
 {% endblock %}
 {% block page_content %}
     <div ng-app="testr" ng-controller="welcomeController" >
             <!--<img ="static/images/background.jpg" class="img-responsive" alt="Responsive image">-->
-            <div class="content">
-                    <h1 class="text-center"> Welcome to Testr </h1>
-                    <h2 class="text-center"> The smart way to take Tests </h2>
+            <div class="content col-lg-8 col-lg-offset-2" >
+                    <h1 class="text-center bg-primary"> Welcome to Testr </h1>
+                    <h2 class="text-center bg-primary"> The smart way to take Tests </h2>
                 <center>
-                    <br> <br> <br>
-                    <button onclick="location.href='register'">Register</button> <br> <br> <br>
-                    <button onclick="location.href='login'">Login</button>
+                    <br>
+                    <button class="btn-lg btn-block btn-danger" onclick="location.href='register'">Register</button> <br>
+                    <button class="btn-lg btn-block btn-danger" onclick="location.href='login'">Login</button>
                 </center>
             </div>
     </div>
