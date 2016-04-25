@@ -1,5 +1,7 @@
 from flask import Flask, render_template , jsonify ,request, flash, redirect, url_for
 from flask.ext.login import login_user , logout_user , current_user , login_required
+from flask.ext.wtf import Form
+from wtforms import TextField, TextAreaField, SubmitField
 from flask.ext.bootstrap import Bootstrap
 from flask.ext.mongoalchemy import MongoAlchemy
 from flask.ext.triangle import Triangle
@@ -213,8 +215,22 @@ def register():
     flash('User successfully registered')
     return redirect(url_for('login'))
 
+class ContactForm(Form):
+  name = TextField("Name")
+  email = TextField("Email")
+  subject = TextField("Subject")
+  message = TextAreaField("Message")
+  submit = SubmitField("Send")
 
-
+@app.route('/contact', methods=['GET', 'POST'])
+def contact():
+  form = ContactForm()
+ 
+  if request.method == 'POST':
+    return 'Form posted.'
+ 
+  elif request.method == 'GET':
+    return render_template('contact.html', form=form)
 
 
 
