@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% block title %}Testr{% endblock %}
+{% block navbar %}
+    {{ super() }}
+    <!--<div class="container-fluid">-->
+        <!--<div class="row">-->
+        <!--<div class="col-sm-3 col-md-2 sidebar">-->
+          <!--<ul class="nav nav-sidebar">-->
+            <!--<li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>-->
+            <!--<li><a href="#">List Tests</a></li>-->
+            <!--<li><a href="#">Grades</a></li>-->
+            <!--<li><a href="#">Performance Analysis</a></li>-->
+          <!--</ul>-->
+        <!--</div>-->
+{% endblock %}
+{% block body_attribs %}
+    background="/static/images/background.jpg",
+    style="background-size: cover;"
+{% endblock %}
+{% block page_content %}
+    <script type="text/javascript">
+        function toggle_visibility(id,dot) {
+           var e = document.getElementById(id);
+           e.style.display = dot
+           //~ if(e.style.display == 'block')
+              //~ e.style.display = 'none';
+           //~ else
+              //~ e.style.display = 'block';
+        }
+    </script>
+
+    <div ng-app="testr" ng-controller="infoController">
+        <div class="content" align="center" >
+            <form action="" method=post class="form-horizontal">
+                    <h2 >Please enter following information </h2> <br>
+                <div class="control-group">
+                    <div class="controls">
+                      <input type="text" id="firstname" name="firstname" class="input-xlarge"
+                        placeholder="Enter First Name" value="{{ request.form.firstname }}"
+                        required>
+                    </div>
+                </div>
+                <br>
+                <div class="control-group">
+                    <div class="controls">
+                      <input type="text" id="lastname" name="lastname" class="input-xlarge"
+                        placeholder="Enter Last Name" value="{{ request.form.lastname }}"
+                        required>
+                    </div>
+                </div>
+                <br>
+                <div class="control-group">
+                    <div class="controls">
+                      <input type="text" id="university" name="university" class="input-xlarge"
+                        placeholder="Enter University" value="{{ request.form.university }}"
+                        required>
+                    </div>
+                </div>
+                <br>
+                <div class="control-group">
+                    <div class="controls">
+                      <input type="text" id="phone" name="phone" class="input-xlarge"
+                        placeholder="Enter Phone Number" value="{{ request.form.university }}"
+                        required>
+                    </div>
+                </div>
+                <br>
+                <div class="control-group">
+                    <div class="controls">
+                        <input type="radio" name="radio_reg" onclick="toggle_visibility('passkey','none')"> <label>Register as Student</label>
+                    </div>
+                </div>
+                <br>
+                <div class="control-group">
+                    <div class="controls">
+                        <input type="radio" name="radio_reg" onclick="toggle_visibility('passkey','block')"> <label>Register as Instructor</label>
+                    </div>
+                </div>
+                <br>
+                <div class="control-group">
+                    <div class="controls">
+                      <input type="text" id="passkey" name="passkey" class="input-xlarge"
+                        placeholder="Enter Passkey" style="display: none;" value="{{ request.form.passkey }}"
+                        required>
+                    </div>
+                </div>
+                <br>
+                <div class="control-group">
+                    <div class="controls">
+                      <button type="submit" class="btn btn-success">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+ </div>
+<!--</div>-->
+{% endblock %}
+{% block scripts %}
+    {{ super() }}
+    <script src="static/angular/infoController.js"></script>
+{% endblock %}
