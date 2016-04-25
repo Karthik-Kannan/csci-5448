@@ -176,6 +176,11 @@ class User(db.Model):
 def register():
     if request.method == 'GET':
         return render_template('register.html')
+
+    if not str(request.form['email']).endswith("colorado.edu"):
+        flash('Please register with @colorado.edu account')
+        return redirect(url_for('register'))
+
     user = User(request.form['username'] , request.form['password'],request.form['email'])
     db.session.add(user)
     db.session.commit()
