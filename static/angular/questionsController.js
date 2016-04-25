@@ -41,7 +41,7 @@ testr.controller('questionController',['$scope','$http','$route', '$routeParams'
                 $scope.PostDataResponse = data;
                 console.log("test");
                 //$scope.changeView('index')
-                window.location.href = 'index';
+                window.location.href = 'teacher';
                 //$location.path('/index');
 
             })
