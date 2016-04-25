@@ -121,6 +121,9 @@ def setQuestions():
                                  'options': question['options']
                                  } );
 
+        flash("Question Bank Updated")
+        return 'Hello from Flask!'
+
 
 
 @app.route('/setAnswers',methods=['GET', 'POST'])
@@ -151,15 +154,9 @@ def setTest():
     testInfo = json.loads(request.data.decode())
     dbMongo.test.insert_one(testInfo)
     print testInfo
-    
 
-    dbMongo.question.insert_one({'question': question['question'],
-                                 'category': question['category'],
-                                 'maxMarks': question['maxMarks'] ,
-                                 'answerType': question['answerType'],
-                                 'referenceAnswer': question['referenceAnswer'],
-                                 'options': question['options']
-                                 } );
+    flash("Test Created")
+    return 'Hello from Flask!'
           
                                  
 @app.route('/createTests',methods=['GET', 'POST'])

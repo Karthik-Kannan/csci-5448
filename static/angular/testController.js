@@ -60,7 +60,7 @@ testr.controller('testController',['$scope','$http','$route', '$routeParams','$l
                 $scope.PostDataResponse = data;
                 console.log("test");
                 //$scope.changeView('index')
-                //window.location.href = 'index';
+                window.location.href = 'teacher';
                 //$location.path('/index');
 
             })
