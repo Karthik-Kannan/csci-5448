@@ -21,7 +21,7 @@
                 <!--<b>{{ loop.index }}:</b> {{ x }}  -->
                 {% if not loop.first %}
                     {% set outerLoop = loop %}
-                    <label for="question">Question: {{ loop.index - 1 }} >> {{x[0]['question']}}</label> <label class="pull-right" > Marks : {{x[0]['maxMarks']}}</label>  <br>
+                    <label for="question"> <span> {{ loop.index - 1 }} </span>  {{x[0]['question']}}</label> <label class="pull-right" > Marks : {{x[0]['maxMarks']}}</label>  <br>
                     {% if x[0]['answerType'] == 0  %}
                         <div id="{{x[0]._id}}">
                             {% for answer in x[0].options.split(',') %}
