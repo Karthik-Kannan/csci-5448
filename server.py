@@ -121,8 +121,8 @@ def setQuestions():
                                  'options': question['options']
                                  } );
 
-        flash("Question Bank Updated")
-        return 'Hello from Flask!'
+    flash("Question Bank Updated")
+    return 'Hello from Flask!'
 
 
 
@@ -132,6 +132,9 @@ def setAnswers():
     testName = answers['testName']
     for question in answers['answers']:
         dbMongo.answer.insert_one({'testName': testName , 'questionID': question , 'answer': answers['answers'][question]})
+
+    flash("Test submitted.")
+    return "Hello from Flask!"
 
 
 
@@ -200,7 +203,7 @@ def questions():
 @app.route('/viewGrades',methods=['GET', 'POST'])
 @login_required
 def viewGrades():
-    return render_template('viewgrade.html')
+    return render_template('viewGrade.html')
 
 
 
