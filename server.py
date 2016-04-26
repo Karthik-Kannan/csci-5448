@@ -180,6 +180,7 @@ def student():
 @app.route('/teacher', methods=['GET', 'POSTS'])
 @login_required
 def teacher():
+    print "Teacher"
     return render_template('teacher.html')
 
 
@@ -216,7 +217,7 @@ def register():
     db.session.add(user)
     db.session.commit()
     flash('User successfully registered')
-    return redirect(url_for('login'))
+    return redirect(url_for('contact'))
 
 # class Contact(Form):
 #   firstname = TextField("First Name")
@@ -227,10 +228,10 @@ def register():
 
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
-    #~ form = ContactForm()
+    #~ form = ContactForm() return render_template('contact')
 
-    #~ if request.method == 'POST':
-        #~ return 'Form posted.'
+    if request.method == 'POST':
+        return render_template('login.html')
  
     if request.method == 'GET':
         return render_template('contact.html')
@@ -248,6 +249,7 @@ def performanceAnalysis(chartID = 'chart_ID', chart_type = 'bar', chart_height =
     xAxis = {"categories": ['xAxis Data1', 'xAxis Data2', 'xAxis Data3']}
     yAxis = {"title": {"text": 'yAxis Label'}}
     return render_template('performanceanalysis.html', chartID=chartID, chart=chart, series=series, title=title, xAxis=xAxis, yAxis=yAxis)
+
 
 @app.route('/login',methods=['GET','POST'])
 def login():

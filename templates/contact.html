@@ -29,9 +29,9 @@
         }
     </script>
 
-    <div ng-app="testr" ng-controller="infoController">
+    <div ng-app="testr" ng-controller="profileController">
         <div class="content" align="center" >
-            <form action="" method=post class="form-horizontal">
+            <form class="form-horizontal">
                     <h2 >Please enter following information </h2> <br>
                 <div class="control-group">
                     <div class="controls">
@@ -67,13 +67,13 @@
                 <br>
                 <div class="control-group">
                     <div class="controls">
-                        <input type="radio" name="radio_reg" onclick="toggle_visibility('passkey','none')"> <label>Register as Student</label>
+                        <input type="radio" name="radio_reg" checked="checked" ng-click="handleReCheckEvent()" onclick="toggle_visibility('passkey','none')"> <label>Register as Student</label>
                     </div>
                 </div>
                 <br>
                 <div class="control-group">
                     <div class="controls">
-                        <input type="radio" name="radio_reg" onclick="toggle_visibility('passkey','block')"> <label>Register as Instructor</label>
+                        <input type="radio" name="radio_reg" ng-click="handleCheckEvent()" onclick="toggle_visibility('passkey','block')"> <label>Register as Instructor</label>
                     </div>
                 </div>
                 <br>
@@ -87,7 +87,7 @@
                 <br>
                 <div class="control-group">
                     <div class="controls">
-                      <button type="submit" class="btn btn-success">Submit</button>
+                      <button ng-click="changePage()" class="btn btn-success">Submit</button>
                     </div>
                 </div>
             </form>
@@ -98,5 +98,5 @@
 {% endblock %}
 {% block scripts %}
     {{ super() }}
-    <script src="static/angular/infoController.js"></script>
+    <script src="static/angular/profileController.js"></script>
 {% endblock %}

@@ -6,7 +6,7 @@
 {% block page_content %}
 
     <div id={{ chartID|safe }} class="chart" style="height: 100px; width: 500px"></div>
-    <script type="javascript/text">
+    <script>
         var chart_id = {{ chartID|safe }}
         var series = {{ series|safe }}
         var title = {{ title|safe }}
